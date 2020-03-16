@@ -1,0 +1,15 @@
+The Project is in complete excution phase.
+
+Multiple inputs are tested
+Sample commands
+
+mvn spring-boot:run -Dspring-boot.run.arguments="JPY 100 in USD"
+
+mvn spring-boot:run -Dspring-boot.run.arguments="AUD 100 in USD"
+
+mvn spring-boot:run -Dspring-boot.run.arguments="AUD 100 in"
+
+Unit test cases are executed with command :: mvn test
+
+Two screenshots are present.
+First gives the output on console and second gives the list of test cases executed
