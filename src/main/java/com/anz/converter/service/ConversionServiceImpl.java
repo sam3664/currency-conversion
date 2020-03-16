@@ -25,18 +25,7 @@ public class ConversionServiceImpl implements ConversionService {
 	}
 
 	private Double conversionFacade(String from, String to) {
-		// When both currencies are same
-		if (from.equalsIgnoreCase(to)) {
+		// Invoke chain starting with EqualCurrencyCommand
 			return EqualCurrencyCommand.getEqualCurrencyCommand().executeConversion(from, to);
-		}
-		// If the currency match directly available
-		else if (CurrencyMappingBuilder.getRateMapperMap().containsKey(from + to)) {
-			return DirectConversionCommand.getDirectConversionCommand().executeConversion(from, to);
-		}
-		// If direct conversion not available, do it through assocication
-		else {
-			return AssosiativeConversionCommand.getAssosiativeConversionCommand().executeConversion(from, to);
-		}
-
 	}
 }

@@ -5,14 +5,16 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
 import com.anz.converter.domain.CurrencyMappingBuilder;
+import com.anz.converter.service.helper.ConversionChain;
 import com.anz.converter.service.helper.ConversionCommand;
 /*
  * AssosiativeConversionCommand when direct conversion not available 
  * It finds the association between from and to currencies and returns the multiplication factor
  */
 
-public class AssosiativeConversionCommand implements ConversionCommand {
+public class AssosiativeConversionCommand implements ConversionChain {
 
+	private ConversionChain chain;
 	@Override
 	public Double executeConversion(String from, String to) {
 		Map<String, Double> fromMap = new HashMap<String, Double>();
@@ -59,6 +61,11 @@ public class AssosiativeConversionCommand implements ConversionCommand {
 
 	public static AssosiativeConversionCommand getAssosiativeConversionCommand() {
 		return new AssosiativeConversionCommand();
+	}
+
+	@Override
+	public void setNext() {
+		this.chain=null;
 	}
 
 }
